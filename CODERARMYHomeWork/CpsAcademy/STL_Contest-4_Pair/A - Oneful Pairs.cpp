@@ -1,0 +1,42 @@
+                    /*************In the name of Allah, the Most Gracious, the Most Merciful***************
+                    *                                        Poet :                                       *
+                                                            Miad
+                    *                                    (muhammadmiad)                                   *
+                    |                               muhammadmiad25@gmail.com                               |
+                    **************************************************************************************//*
+                                            I have a clumsy apprentice called Einstein.
+*/#include<bits/stdc++.h>
+using namespace std;
+///data_type_compressions :
+#define     ll                              long long int
+#define     ull                             unsigned long long int
+#define     ui                              unsigned int
+///I/O :
+#define     Faster                          ios_base::sync_with_stdio(false);cin.tie(0);cout.tie(0);
+#define     INF                             LLONG_MAX
+#define     in_range(i,x,y)                 for(int i=x;i<=y;i++)
+#define     in_range_back(i,x,y)            for(int i=y;i>=x;i--)
+
+///..............................................Let's Start with main function, shan't we.?......................................
+bool solve(int n){
+ int one=0;
+ int cnt=0;
+ while(n){
+    int rem=n%10;
+    if(rem==1)one++;
+    cnt++;
+    n/=10;
+ }
+ return cnt==one;
+
+}
+int main(){
+    Faster;
+    int a,b;
+    cin>>a>>b;
+    bool ans=solve(a+b+(a*b));
+    if(ans)cout<<"Yes"<<endl;
+    else cout<<"No"<<endl;
+
+   return 0;
+}

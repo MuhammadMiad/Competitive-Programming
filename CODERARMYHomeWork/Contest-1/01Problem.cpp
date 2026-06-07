@@ -1,0 +1,12 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main(){
+double x,p;
+cin>>x>>p;
+double ans;
+ans=(100*p)/(100-x);
+cout<<fixed<<setprecision(2);
+cout<<ans<<endl;
+
+return 0;
+}
