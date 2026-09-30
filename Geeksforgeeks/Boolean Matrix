@@ -1,0 +1,46 @@
+//Time Complexity:O(n^2)
+//Space Complexity:O(1)
+
+class Solution {
+  public:
+    void booleanMatrix(vector<vector<int>>& mat) {
+        int n=mat.size();
+        int m=mat[0].size();
+        
+        int row0=false,column0=false;
+        for(int i=0;i<n;i++){
+            if(mat[i][0])column0=true;
+        }
+        
+        for(int i=0;i<m;i++){
+            if(mat[0][i])row0=true;
+        }
+        
+        for(int i=1;i<n;i++){
+            for(int j=1;j<m;j++){
+                if(mat[i][j]){
+                    mat[0][j]=1;
+                    mat[i][0]=1;
+                }
+            }
+        }
+        
+        for(int i=1;i<n;i++){
+            for(int j=1;j<m;j++){
+                if(mat[i][0]  || mat[0][j]){
+                    mat[i][j]=1;
+                    
+                }
+            }
+        }
+        
+        
+        if(row0){
+            for(int i=0;i<m;i++)mat[0][i]=1;
+        }
+        if(column0){
+            for(int i=0;i<n;i++)mat[i][0]=1;
+        }
+        
+    }
+};
