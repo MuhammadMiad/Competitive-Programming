@@ -1,0 +1,30 @@
+//Time Complexity: O(n+mx^2)
+//Space Complexity: O(mx)
+
+class Solution {
+  public:
+    bool pythagoreanTriplet(vector<int>& arr) {
+        int n=arr.size();
+        int mx=*max_element(begin(arr),end(arr));
+        vector<int>present(mx+1,0);
+        for(int i=0;i<n;i++){
+            present[arr[i]]=true;
+        }
+        
+        for(int a=1;a<=mx;a++){
+            if(!present[a])continue;
+            
+            for(int b=a;b<=mx;b++){
+                if(!present[b])continue;
+                int c2=a*a+b*b;
+                
+                int c=sqrt(c2);
+                if(c>mx)break;
+                if(c*c==c2 and present[c])return true;
+            }
+        }
+        
+        return false;
+        
+    }
+};
