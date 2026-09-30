@@ -1,0 +1,27 @@
+class Solution {
+  public:
+    void rearrange(vector<int>& arr) {
+       int n=arr.size();
+       sort(begin(arr),end(arr));
+       int mxElem=arr[n-1]+1;
+       int mnindex=0;
+       int mxindex=n-1;
+       
+       for(int i=0;i<n;i++){
+           if(i%2==0){
+               arr[i]+=(arr[mxindex]%mxElem)*mxElem;
+               mxindex--;
+           }
+           else {
+               arr[i]+=(arr[mnindex]%mxElem)*mxElem;
+               mnindex++;
+           }
+       }
+       
+       
+       for(int i=0;i<n;i++){
+           arr[i]/=mxElem;
+       }
+        
+    }
+};
