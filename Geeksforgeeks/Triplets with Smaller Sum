@@ -1,0 +1,26 @@
+
+//Time Complexity:O(n^2)
+//Space Complexity;O(1)
+
+class Solution {
+  public:
+    int countTriplets(int sum, vector<int>& arr) {
+          int n=arr.size();
+          int cnt=0;
+          sort(begin(arr),end(arr));
+          for(int i=0;i<n-2;i++){
+              int l=i+1,h=n-1;
+              while(l<h){
+                 int ss=arr[l]+arr[h]+arr[i];
+                 if(ss<sum){
+                     cnt+=(h-l);     //best important
+                     l++;
+                 }
+                 else if(ss>=sum)h--;
+              }
+          }
+          
+          return cnt;
+        
+    }
+};
