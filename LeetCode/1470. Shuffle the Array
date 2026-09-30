@@ -1,0 +1,24 @@
+class Solution {
+public:
+    vector<int> shuffle(vector<int>& nums, int n) {
+         int mnindex=0,mxindex=n,mxElem=*max_element(begin(nums),end(nums))+1;
+
+         for(int i=0;i<2*n;i++){
+            if(i%2==0){
+                nums[i]+=(nums[mnindex]%mxElem)*mxElem;
+                mnindex++;
+            }
+            else{
+                nums[i]+=(nums[mxindex]%mxElem)*mxElem;
+                mxindex++;
+            }
+         }
+
+         for(int i=0;i<2*n;i++){
+            nums[i]/=mxElem;
+         }
+
+
+         return nums;
+    }
+};
