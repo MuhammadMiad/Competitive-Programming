@@ -1,0 +1,48 @@
+//Time Complexity:O(n)
+//Space Complexity:O(1)
+
+class Solution {
+  public:
+    int maxTripletProduct(vector<int>& arr) {
+        int n=arr.size();
+        int mx1,mx2,mx3,mn1,mn2;
+        int mxin1,mxin2,mnin1;
+            mx1=mx2=mx3=-1e4;
+            mn1=mn2=1e4;
+        
+        for(int i=0;i<n;i++){
+            if(mx1<arr[i]){
+                mx1=arr[i];
+                mxin1=i;
+            }
+        }
+        
+        for(int i=0;i<n;i++){
+            if(mx2<arr[i] and mxin1!=i){
+                mx2=arr[i];
+                mxin2=i;
+            }
+        }
+        
+        for(int i=0;i<n;i++){
+            if(mx3<arr[i] and mxin1!=i and mxin2!=i){
+                mx3=arr[i];
+            }
+        }
+        
+        for(int i=0;i<n;i++){
+            if(mn1>arr[i]){
+                mn1=arr[i];
+                mnin1=i;
+            }
+        }
+        
+        for(int i=0;i<n;i++){
+            if(mn2>arr[i]  and mnin1!=i)mn2=arr[i];
+        }
+        
+        
+        return ((mx1*mx2*mx3)>(mx1*mn1*mn2))?mx1*mx2*mx3:mx1*mn1*mn2;
+        
+    }
+};
