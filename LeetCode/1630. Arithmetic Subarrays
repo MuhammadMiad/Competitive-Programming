@@ -1,0 +1,97 @@
+//Method-01:Brute Force/Sort
+Time Complexity: O(n*nlogn)
+Space Complexity:O(n)
+
+class Solution {
+public:
+    vector<bool> checkArithmeticSubarrays(vector<int>& nums, vector<int>& l, vector<int>& r) {
+           
+           int n=nums.size();
+           int m=l.size();
+           vector<bool>ans(m);
+
+
+           for(int i=0;i<m;i++){
+            vector<int>st;
+            for(int j=l[i];j<=r[i];j++){
+                st.push_back(nums[j]);
+            }
+            sort(begin(st),end(st));
+            if(st.size()==1){
+                ans[i]=true;
+                continue;
+            }
+
+            int x=st[1]-st[0];
+            int flag=0;
+            for(int j=1;j<st.size();j++){
+                if(st[j]-st[j-1]!=x){
+                     ans[i]=false;
+                     flag=1;
+                     break;
+                }
+               
+            }
+            if(!flag)ans[i]=true;
+
+            st.clear();
+              
+           }
+
+
+           return ans;
+    }
+};
+
+
+
+
+
+//Method-02  Wigh out Sort
+//Time Complexity:O(len)
+//Space Complexity:O(len)
+
+class Solution {
+public:
+    vector<bool> checkArithmeticSubarrays(vector<int>& nums, vector<int>& l, vector<int>& r) {
+           
+           int n=nums.size();
+           int m=l.size();
+           vector<bool>ans(m);
+
+          for(int i=0;i<m;i++){
+            int mn=INT_MAX,mx=INT_MIN;
+            int len=r[i]-l[i]+1;
+             
+             for(int j=l[i];j<=r[i];j++){
+                mn=min(mn,nums[j]);
+                mx=max(mx,nums[j]);
+             }
+             if(mx==mn){ans[i]=true;continue;}
+             if((mx-mn)%(len-1)!=0){
+                ans[i]=false;
+                continue;
+             }
+             int d=(mx-mn)/(len-1);
+
+             vector<bool>seen(len,false);
+             bool ok=true;
+             for(int j=l[i];j<=r[i];j++){
+                int diff = nums[j]-mn;
+                if( diff % d != 0){
+                    ok=false;
+                    break;
+                }
+
+                int indx=diff/d;
+                if(seen[indx]){ok=false;break;}
+                else seen[indx]=true;
+             }
+
+             ans[i]=ok;
+
+          }
+
+          return ans;
+    }
+};
