@@ -1,0 +1,42 @@
+///Subarrays with Sum in Range using Sliding Window
+//Time Complexity:O(n)
+//Space Complexity:O(1)
+
+class Solution {
+  public:
+    int countSubarray(vector<int>& arr, int left, int right) {
+        
+        ///Answer=(sum<=right  number of subarray)-(sum<=left-1  number of subarray);
+        
+        int n=arr.size();
+        int cnt=0;
+        long long sum=0;
+        int l=0;
+        for(int r=0;r<n;r++){
+            sum+=arr[r];
+            while(sum>right and l<=r){
+                sum-=arr[l];
+                l++;
+            }
+            
+            cnt+=r-l+1;
+        }
+        
+        l=0;
+        sum=0;
+        for(int r=0;r<n;r++){
+            sum+=arr[r];
+            while(sum>left-1 and l<=r){
+                sum-=arr[l];
+                l++;
+            }
+            
+            cnt-=r-l+1;
+        }
+        
+        
+        
+        return cnt;
+        
+    }
+};
