@@ -1,0 +1,48 @@
+//SPOJ DIV - Divisors
+
+//Time Complexity:O(nlongn)
+//Space Complexity:O(n)
+
+
+
+#include<bits/stdc++.h>
+using namespace std;
+const int N=1000000;
+int main(){
+     vector<int>d(N+1,0);
+     for(int i=1;i<=N;i++){
+          for(int j=i;j<=N;j+=i){
+            d[j]++;
+          }
+     }
+
+     int M=*max_element(begin(d),end(d));
+
+     vector<int>prime(M+1,0);
+     for(int i=2;i*i<=M;i++){
+             if(prime[i]==0){
+                for(int j=i*i;j<=M;j+=i){
+                    prime[j]=1;
+                }
+             }
+     }
+
+     vector<int>goods(M+1,0);
+     for(int p=2;p<=M;p++){
+          if(prime[p])continue;
+          for(int q=p+1;p*q<=M;q++){
+                if( prime[q]==0)goods[p*q]=1;
+          }
+     }
+
+     int cnt=0;
+     for(int n=2;n<=N;n++){
+           if( d[n]<=M and goods[d[n]]==1){
+                cnt++;
+                if(cnt%9==0)cout<<n<<endl;
+           }
+     }
+
+
+return 0;
+}
