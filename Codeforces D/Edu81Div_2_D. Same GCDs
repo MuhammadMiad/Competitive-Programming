@@ -1,0 +1,32 @@
+//Time complexity O(sqrt(n))
+//Space Complexity O(1)
+
+
+#include<bits/stdc++.h>
+using namespace std;
+typedef long long int ll;
+ll phi(ll n){
+     ll ans=n;
+     for(ll i=2;i*i<=n;i++){
+          if(n%i==0){
+               while(n%i==0)n/=i;
+               ans-=ans/i;
+          }
+     }
+     if(n>1)ans-=ans/n;
+     
+     return ans;
+}
+void solve(){
+      ll a,m;cin>>a>>m;
+      ll g=__gcd(a,m);
+      cout<<phi(m/g)<<endl;
+     
+     
+}
+int main(){
+    ios_base::sync_with_stdio(0);cin.tie(nullptr);
+    int t;cin>>t;while(t--)solve();
+     
+     return 0;
+}
