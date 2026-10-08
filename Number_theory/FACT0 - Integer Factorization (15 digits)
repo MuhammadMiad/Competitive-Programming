@@ -1,0 +1,29 @@
+#include<bits/stdc++.h>
+using namespace std;
+typedef long long int ll;
+void  factorization(ll n){
+       for(ll i=2;i*i<=n;i++){
+             if(n%i==0){
+                    ll cnt=0;
+                    while(n%i==0){
+                        cnt++;
+                        n/=i;
+                    }
+                    cout<<i<<"^"<<cnt<<" ";
+             }
+       }
+
+       if(n>1)cout<<n<<"^"<<1<<endl;
+
+
+
+}
+int main(){
+    ios_base::sync_with_stdio(0);cin.tie(nullptr);
+    ll n;
+      while(cin>>n){
+           factorization(n);
+      }
+
+return 0;
+}
