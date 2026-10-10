@@ -1,0 +1,94 @@
+//Method-01
+
+//Time Complexity:O(n)
+//Space Complexity:O(n)
+
+class Solution {
+  public:
+    string reverseWords(string &s) {
+        int n=s.size();
+        string str;
+        string st;
+        //at first remove extra dots
+        for(int i=0;i<n;i++){
+            if(s[i]!='.')str+=s[i];
+            else if(s[i]=='.' and !str.empty()){
+                if(st.empty()){
+                 st+=str;
+                 str.clear();
+                }
+                else{
+                    st+='.';
+                    st+=str;
+                    str.clear();
+                }
+               
+                
+            }
+        }
+        
+        if(!str.empty()){
+            if(!st.empty()){
+                st+='.';
+                
+            }
+            st+=str;
+        }
+        
+        //reverse the new string
+        reverse(begin(st),end(st));
+        
+        //each word reverse in new string
+        int m=st.size();
+        int start=0;
+        for(int i=0;i<=m;i++){
+            if(i==m || st[i]=='.'){
+                reverse(begin(st)+start,begin(st)+i);
+                start=i+1;
+            }
+        }
+        
+        return st; 
+    }
+};
+
+
+
+
+//Method-02
+//Time Complexity:O(n)
+//Space Complexity:O(1)
+
+
+class Solution {
+  public:
+    string reverseWords(string &s) {
+        int n=s.size();
+        int j=0;
+        //at first remove extra dots
+        for(int i=0;i<n;i++){
+            if(s[i]=='.')continue;
+            if(j!=0)s[j++]='.';
+            while(i<n and s[i]!='.'){
+                s[j++]=s[i++];
+                
+            }
+        }
+        
+        s.resize(j);
+        
+        //reverse the new string
+        reverse(begin(s),end(s));
+        
+        //each word reverse in new string
+        int start=0;
+        for(int i=0;i<=j;i++){
+            if(i==j|| s[i]=='.'){
+                reverse(begin(s)+start,begin(s)+i);
+                start=i+1;
+            }
+        }
+        
+        return s; 
+    }
+};
