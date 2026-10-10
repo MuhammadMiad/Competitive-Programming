@@ -1,0 +1,17 @@
+//Time Complexity:O(n)
+//Space Complexity:O(1)
+
+
+class Solution {
+  public:
+    int binarySubstring(string& s) {
+        int total1=count(begin(s),end(s),'1');
+        
+        int sum=0;
+        for(int i=1;i<total1;i++)sum+=i;
+        
+        
+        return sum;
+        
+    }
+};
