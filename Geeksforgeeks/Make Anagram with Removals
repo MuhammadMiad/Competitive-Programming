@@ -1,0 +1,20 @@
+//Time Complexity:O(n)
+//Space Complexity:O(1)
+
+class Solution {
+  public:
+    int remAnagram(string &s1, string &s2) {
+        vector<int>st1(26,0),st2(26,0);
+        for(int i=0;i<s1.size();i++)st1[s1[i]-'a']++;
+        for(int i=0;i<s2.size();i++)st2[s2[i]-'a']++;
+        
+        int cnt=0;
+        for(int i=0;i<26;i++){
+            cnt+=abs(st1[i]-st2[i]);
+        }
+        
+        return cnt;
+
+        
+    }
+};
