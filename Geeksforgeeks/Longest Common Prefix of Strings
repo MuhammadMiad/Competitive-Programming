@@ -1,0 +1,35 @@
+//Time Complexity:O(n*min(arr[i]))
+//Space complexity:O(min(arr[i]));
+
+
+class Solution {
+  public:
+    string longestCommonPrefix(vector<string> arr) {
+        
+           int n=arr.size();
+           int mn=INT_MAX;
+           string str;
+           for(int i=0;i<n;i++){
+               if(arr[i].size()<mn){
+                   mn=arr[i].size();
+                   str=arr[i];
+               }
+           }
+           
+           set<char>st;
+           int ind=mn;
+           for(int i=0;i<mn;i++){
+                    for(int j=0;j<n;j++){
+                        st.insert(arr[j][i]);
+                        
+                    }
+                    if(st.size()>1){
+                        ind=i;
+                        break;
+                    }
+                    st.clear();
+           }
+           return str.substr(0,ind);
+        
+    }
+};
