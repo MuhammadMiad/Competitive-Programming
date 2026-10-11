@@ -1,0 +1,36 @@
+//Method 01
+
+//Time Complexity:O(n)
+//Space Complexity:O(n)
+
+class Solution {
+public:
+    int lengthOfLastWord(string s) {
+        istringstream st(s);
+        string word;
+        while(st>>word){};
+
+        return word.size();
+        
+    }
+};
+
+
+//Method 02
+//Time Complexity:O(n)
+//Space Complexity:O(1)
+
+class Solution {
+public:
+    int lengthOfLastWord(string& s) {
+        int i = s.size() - 1;
+        while (i >= 0 && s[i] == ' ') i--;     // last space remove
+
+        int len = 0;
+        while (i >= 0 && s[i] != ' ') {      //Just last word count
+            len++;
+            i--;
+        }
+        return len;
+    }
+};
