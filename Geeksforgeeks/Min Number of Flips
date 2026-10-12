@@ -1,0 +1,38 @@
+//Time Complexity:O(n)
+//Space Complexity:o(1)
+
+
+class Solution {
+  public:
+    int minFlips(string& s) {
+        int n=s.size();
+        int mn=INT_MAX,cnt=0;
+        //first bit keeping 0
+        for(int i=0;i<n;i++){
+          if(i%2==0){
+              if(s[i]!='0')cnt++;
+          }
+          else{
+            if(s[i]!='1')cnt++;
+          } 
+        }
+        
+        mn=min(mn,cnt);
+        
+        //first bit keeping 1
+        cnt=0;
+        for(int i=0;i<n;i++){
+          if(i%2==0){
+              if(s[i]!='1')cnt++;
+          }
+          else{
+            if(s[i]!='0')cnt++;
+          } 
+        }
+        
+        mn=min(mn,cnt);
+        
+        return mn;
+        
+    }
+};
