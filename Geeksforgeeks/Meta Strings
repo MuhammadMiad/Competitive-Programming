@@ -1,0 +1,25 @@
+//Time Complexity:O(n)
+//Space Complexity:O(1)
+
+
+class Solution {
+  public:
+    bool metaStrings(string &s1, string &s2) {
+        if(s1==s2 or s1.size()!= s2.size())return 0;
+        int i=0,j=s1.size()-1;
+        
+        for(i=0;i<s1.size();i++){
+            if(s1[i]!=s2[i])break;
+        }
+        
+         for(j=s1.size()-1;j>=0;j--){
+            if(s1[j]!=s2[j])break;
+        }
+        
+        swap(s1[i],s1[j]);
+        
+        if(s1==s2)return 1;
+        else return 0;
+        
+    }
+};
