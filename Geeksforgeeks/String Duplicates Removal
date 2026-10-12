@@ -1,0 +1,22 @@
+//Time Complexity:O(n)
+//Space Complexity:O(1)
+
+
+
+//User function template for C++
+class Solution{
+public:
+	string removeDuplicates(string str) {
+	    // code here
+	    vector<int>store(256,0);
+	    string ss;
+	    for(int i=0;i<str.size();i++){
+	        if(store[str[i]]==0){
+	         ss+=str[i];
+	         store[str[i]]++;
+	        }
+	        
+	    }
+	    return ss;
+	}
+};
