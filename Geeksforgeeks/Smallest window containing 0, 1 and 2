@@ -1,0 +1,44 @@
+//Time complexity:O(n)
+//Space Complexity:O(1)
+
+
+class Solution {
+  public:
+    int smallestSubstring(string &s) {
+        
+        unordered_set<char>st;
+        for(int i=0;i<s.size();i++)st.insert(s[i]);
+        
+        if(st.size()<3)return -1;
+        
+        vector<int>check(3,0);
+        
+        int cnt=3;
+        int first=0,second=0;
+        int len=1e9;
+        while(second<s.size()){
+             
+              while(cnt and second<s.size()){
+                    if(check[s[second]-'0']==0)cnt--;
+                    
+                    check[s[second]-'0']++;
+                    second++;
+              }
+              
+              len=min(len,second-first);
+              
+              while(cnt!=1){
+                  len=min(len,second-first);
+                  
+                  check[s[first]-'0']--;
+                  if(check[s[first]-'0']==0)cnt++;
+                  first++;
+              }
+            
+            
+        }
+        
+        return len;
+        
+    }
+};
