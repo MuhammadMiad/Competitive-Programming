@@ -1,0 +1,35 @@
+//Time Complexity:O(max(s1,s2))
+//Time Complexity:O(max(s1,s2))
+
+
+class Solution {
+  public:
+    string findSum(string &s1, string &s2) {
+        int i=s1.size()-1;
+        int j=s2.size()-1;
+        
+        int carray=0;
+        string ans="";
+        
+        while(i>=0 || j>=0 || carray){
+            int value=carray;
+            if(i>=0)value+=(s1[i--]-'0');
+            if(j>=0)value+=(s2[j--]-'0');
+            
+            carray=value/10;
+            ans+=(value%10)+'0';
+        }
+        
+        reverse(begin(ans),end(ans));
+        
+        // remove leading zero
+        int k=0;
+        while(k<ans.size()-1 and ans[k]=='0')k++;
+        
+        
+        
+        return ans.substr(k);
+        
+        
+    }
+};
