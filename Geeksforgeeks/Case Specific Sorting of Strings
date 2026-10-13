@@ -1,0 +1,106 @@
+//--------------------------------------------------------------------Method-01------------------------------------------------------------------------
+//Time Complexity:O(nlogn)
+//Space Complexity:O(n)
+
+
+class Solution {
+  public:
+    string caseSort(string& s) {
+        int n=s.size();
+        string cap="";
+        string sma="";
+        for(int i=0;i<n;i++){
+            if(s[i]<'a')cap+=s[i];
+            else sma+=s[i];
+        }
+        
+        sort(begin(cap),end(cap));
+        sort(begin(sma),end(sma));
+        
+        int i=0,j=0;
+        for(int k=0;k<n;k++){
+            if(s[k]<'a')s[k]=cap[i++];
+            else s[k]=sma[j++];
+        }
+        
+        
+        
+        return s;
+        
+    }
+};
+
+
+
+//-------------------------------------------------------------------Method-02--------------------------------------------------------------------------
+//Time Complexity:O(n)
+//Space Complexity:O(n)
+
+class Solution {
+  public:
+    string caseSort(string& s) {
+        int n=s.size();
+        vector<int>lower(26,0);
+        vector<int>upper(26,0);
+        for(int i=0;i<n;i++){
+            if(s[i]<'a')upper[s[i]-'A']++;
+            else lower[s[i]-'a']++;
+        }
+        string cap="";
+        string sma="";
+        for(int i=0;i<26;i++){
+           if(lower[i])sma+=string(lower[i],i+'a');
+           if(upper[i])cap+=string(upper[i],i+'A');
+        }
+
+        int i=0,j=0;
+        for(int k=0;k<n;k++){
+            if(s[k]<'a')s[k]=cap[i++];
+            else s[k]=sma[j++];
+        }
+        
+        
+        
+        return s;
+        
+    }
+};
+
+
+
+//------------------------------------------------------------------Method-03---------------------------------------------------------------------------
+//Time Complexity:O(n)
+//Space Complexity:O(1)
+
+
+class Solution {
+  public:
+    string caseSort(string& s){
+        int n=s.size();
+        vector<int>lower(26,0);
+        vector<int>upper(26,0);
+        for(int i=0;i<n;i++){
+            if(s[i]<'a')upper[s[i]-'A']++;
+            else lower[s[i]-'a']++;
+        }
+        
+
+        int i=0,j=0;
+        for(int k=0;k<n;k++){
+            if(s[k]<'a'){
+               while(i<26 and upper[i]==0)i++;
+               s[k]=i+'A';
+               upper[i]--;
+            }
+            else{
+              while(j<26 and lower[j]==0)j++;
+               s[k]=j+'a';
+               lower[j]--;
+                
+            }
+        }
+        
+        return s;
+        
+    }
+};
