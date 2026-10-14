@@ -1,0 +1,23 @@
+//Time Complexity:O(lon n)
+//Space Complexity:O(26)
+
+
+
+class Solution {
+  public:
+    string colName(int n) {
+        string str="";
+       
+        while(n>0){
+            n--;
+            char ch=((n%26)+'A');
+            str=ch+str;
+            
+            n/=26;
+        }
+        
+        
+        return str;
+        
+    }
+};
