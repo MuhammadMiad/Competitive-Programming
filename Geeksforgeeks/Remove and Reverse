@@ -1,0 +1,51 @@
+//Time Complexity:O(n)
+//Space Complexity:O(1)
+
+
+class Solution {
+  public:
+    string removeReverse(string s) {
+        int n=s.size();
+        vector<int>freq(26,0);
+        for(int i=0;i<n;i++)freq[s[i]-'a']++;
+        
+        int  distinct=0;
+        for(int x:freq)if(x>0)distinct++;
+        
+        int operation=n-distinct;
+        
+        int i=0,k=0,j=n-1;
+        while(k<operation){
+            if(k%2==0){
+              while(s[i]=='#'||freq[s[i]-'a']<=1)i++;
+              freq[s[i]-'a']--;
+              s[i]='#';
+              i++;
+            } 
+            else{
+              while(s[j]=='#' || freq[s[j]-'a']<=1)j--;
+              freq[s[j]-'a']--;
+              s[j]='#';
+              j--;
+            }
+            
+            k++;
+            
+        }
+        
+        
+        string str="";
+        for(int i=0;i<n;i++){
+            if(s[i]!='#')str+=s[i];
+        }
+        
+        if(operation%2){
+            reverse(begin(str),end(str));
+            
+        }
+        
+        return str;
+        
+        
+    }
+};
