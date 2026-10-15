@@ -1,0 +1,29 @@
+//Time Complexity:O(n)
+//Space Complexity:O(1)
+
+
+string Solution::solve(string A, string B) {
+     int n=A.size();
+     vector<int>Secrets(10,0),Gusses(10,0);
+     int bulls=0,cows=0;
+     for(int i=0;i<n;i++){
+         if(A[i]==B[i])bulls++;
+         else{
+             Secrets[A[i]-'0']++;
+             Gusses[B[i]-'0']++;
+         }
+     }
+     
+     for(int i=0;i<10;i++){
+         cows+=min(Secrets[i],Gusses[i]);
+     }
+     
+     string str;
+     str+=bulls+'0';
+     str+='A';
+     str+=cows+'0';
+     str+='B';
+     
+     
+     return to_string(bulls) + "A" + to_string(cows) + "B";
+    
