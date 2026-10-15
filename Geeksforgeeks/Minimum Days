@@ -1,0 +1,29 @@
+//Time Complexity:O(n)
+//Space Complexity:O(1)
+
+
+class Solution {
+  public:
+    int getMinimumDays(string &s, vector<int> &p) {
+        int n=s.size();
+        int same=0;
+        for(int i=0;i<n-1;i++)if(s[i]==s[i+1])same++;
+        if(same==0)return 0;
+        
+        
+        for(int i=0;i<n;i++){
+            int ind=p[i];
+            if(ind>0 and s[ind]==s[ind-1])same--;
+            if(ind+1<n and s[ind]==s[ind+1])same--;
+            
+            s[ind]='?';
+            
+            if(same==0)return i+1;
+        }
+        
+        
+        
+        return n;
+        
+    }
+};
