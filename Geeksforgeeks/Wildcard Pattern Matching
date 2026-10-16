@@ -1,0 +1,40 @@
+//Time Complexity:O(n*m)
+//Space Complexity:O(1)
+
+
+
+class Solution {
+  public:
+    bool wildCard(string &txt, string &pat) {
+        int n=txt.size();
+        int m=pat.size();
+        
+        int star=-1;
+        int match=0;
+        int i=0,j=0;
+        
+        while(i<n){
+          if(j<m and (txt[i]==pat[j] || pat[j]=='?')){
+              i++;j++;
+          } 
+          else if(j<m and pat[j]=='*'){
+              star=j;
+              match=i;
+              j++;
+          }
+          else if(star!=-1){
+              j=star+1;
+              match++;
+              i=match;
+          }
+          else return 0;
+            
+        }
+        
+        while(j<m and pat[j]=='*')j++;
+        
+        return j==m;
+       
+        
+    }
+};
