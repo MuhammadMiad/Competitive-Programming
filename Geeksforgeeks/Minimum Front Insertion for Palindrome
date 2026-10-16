@@ -1,0 +1,38 @@
+//Time Complexity:O(n)
+//Space Complexity:O(n)
+
+class Solution {
+  public:
+ 
+    int minChar(string &s) {
+        int n=s.size();
+        string str=s;
+        reverse(begin(s),end(s));
+        
+        str+="$";
+        str+=s;
+        
+        vector<int>lps(str.size(),0);
+        
+        int pre=0,suf=1;
+        while(suf<str.size()){
+            //match
+            if(str[pre]==str[suf]){
+                lps[suf]=pre+1;
+                pre++;suf++;
+            }
+            //not match
+            else{
+                if(pre==0){
+                    lps[suf]=0;
+                    suf++;
+                }
+                else pre=lps[pre-1];
+            }
+        }
+        
+        
+        return n-lps[str.size()-1];
+        
+    }
+};
