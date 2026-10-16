@@ -1,0 +1,21 @@
+
+
+string Solution::intToRoman(int A) {
+    
+    vector<string>Roman={"M","CM","D","CD","C","XC","L","XL","X","IX","V","IV","I"};
+    vector<int>Integer={1000,900,500,400,100,90,50,40,10,9,5,4,1};
+    string str;
+    int i=0;
+    while(A){
+        
+        while(Integer[i]<=A){
+            str+=Roman[i];
+            A-=Integer[i];
+           
+        }
+        i++;
+        
+    }
+    
+    return str;
+}
