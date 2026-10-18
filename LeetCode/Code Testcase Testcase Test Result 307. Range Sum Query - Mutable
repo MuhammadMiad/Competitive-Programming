@@ -1,0 +1,56 @@
+//Time Complexity:O(n log n)
+//Space Complexity:O(n)
+
+
+class NumArray {
+     int n;
+     vector<int>tree,arr;
+     int read(int index){
+        int sum=0;
+        while(index>0){
+             sum+=tree[index];
+             index-=(index & -index);
+        }
+        return sum;
+    }
+
+    void add(int index, int value){
+        while(index<=n){
+            tree[index]+=value;
+            index+=(index & -index);
+        }
+    }
+
+    void construct(int index, int value){
+        while(index<=n){
+            tree[index]+=value;
+            index+=(index & -index);
+        }
+    }
+public:
+    NumArray(vector<int>& nums) {
+         n=nums.size();
+         arr=nums;
+         tree.assign(n+1,0);
+         for(int i=1;i<=n;i++){
+            construct(i, nums[i-1]);
+         } 
+    }
+    
+    void update(int index, int val) {
+          add(index+1, val-arr[index]);
+          arr[index]=val;
+    }
+   
+    
+    int sumRange(int left, int right) {
+        return read(right+1)-read(left);
+    }
+};
+
+/**
+ * Your NumArray object will be instantiated and called as such:
+ * NumArray* obj = new NumArray(nums);
+ * obj->update(index,val);
+ * int param_2 = obj->sumRange(left,right);
+ */
