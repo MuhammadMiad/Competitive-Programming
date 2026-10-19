@@ -1,0 +1,124 @@
+#include<bits/stdc++.h>
+using namespace std;
+typedef  long  long ll;
+ll tree[100005];
+ll B1[100005],B2[100005];  // Range Update + Range Sum
+ll n;
+///Construction and point update function
+void  update(int index, ll value){
+     while(index<=n){
+        tree[index]+=value;
+        index+=(index & -index);
+     }
+
+}
+
+///Range Sum or prefix sum
+  ll   read(int  index){
+    ll sum=0;
+    while(index>0){
+        sum+=tree[index];
+        index-=(index & -index);
+    }
+    return sum;
+ }
+
+ ll range_sum(int  l, int   r){
+ return read(r)-read(l-1);
+ }
+//Adding index at last
+  void Push_back(ll value){
+           n++;
+           tree[n]=0;
+           tree[n]=value+read(n-1)-read(n-(n&-n));
+  }
+
+  //Removing index from last
+  void Pop_back(){
+     tree[n]=0;
+     n--;
+  }
+
+  ///Range Update +Range Sum
+
+  void add_to(ll *arr,  int  index, ll  value){
+
+             while(index<=n){
+                arr[index]+=value;
+                index+=(index& -index);
+             }
+  }
+
+  void range_update(int  l, int r, ll value){
+         add_to(B1,l,value);
+         add_to(B1,r+1,-value);
+         add_to(B2,l,value*(l-1));
+         add_to(B2,r+1,-value*r);
+
+  }
+  ll  read2(ll *arr, int index){
+             ll sum=0;
+             while(index>0){
+                sum+=arr[index];
+                index-=(index & -index);
+             }
+
+    return sum;
+  }
+
+  ll  prefix(ll index){
+          return read2(B1, index)*index- read2(B2,index);
+  }
+
+  ll range_sum2(ll l ,ll r){
+         return prefix(r)-prefix(l-1);
+  }
+  // range update + poing query: range_add(l, r, v)
+ll point_query(int index) {
+    return read2(B1, index);
+}
+
+int main(){
+      n=16;
+      int  arr[]={0,1,0,2,1,1,3,0,4,2,5,2,2,3,1,0,2};
+      for(int i=1;i<=n;i++){
+        update(i,arr[i]); //O(nlog n)
+      }
+        //  Push_back(100);
+         // Pop_back();
+         cout<<"Original Array:\n";
+         for(int i=1;i<=n;i++)cout<<arr[i]<<" ";
+
+         cout<<"\n Tree array:\n";
+         for(int i=1;i<=n;i++)cout<<tree[i]<<" ";
+
+         cout<<"\n Range Sum  3  and 6 : ";
+         cout<<range_sum(3,6)<<endl;
+
+        cout<<"\n Tree after point update 5 by 5 : ";
+         update(5,5);
+        for(int i=1;i<=n;i++)cout<<tree[i]<<" ";
+
+       // cout<<"\n Range Update  3 to 6 by 5 : \n";
+        range_update(3,6,5);
+
+        cout<<"\n B1 array after range update  3 to 6 by 5 : \n";
+        for(int i=1;i<=n;i++)cout<<B1[i]<<" ";
+
+        cout<<"\n B2 array after range update  3 to 6 by 5 : \n";
+        for(int i=1;i<=n;i++)cout<<B2[i]<<" ";
+
+        cout<<"\n Range Sum  3  and 6 after range update : ";
+        cout<<range_sum2(3,6)+range_sum(3,6)<<endl;
+
+        cout<<"\n Prefix Sum of 2 after range update : ";
+        cout<<prefix(2)<<endl;
+
+       cout<<"\n Point query of 6 after range update : ";
+       cout<<point_query(6)<<endl;
+
+
+
+
+return 0;
+}
