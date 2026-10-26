@@ -1,0 +1,25 @@
+//Time Complexity:O(64)
+//Space Complexity:O(1)
+
+
+
+#include<bits/stdc++.h>
+using namespace std;
+typedef long long int ll;
+void solve(){
+            ll x;cin>>x;
+            ll bit=64-__builtin_clzll(x);
+            ll ans=0;
+            for(int b=0;b<bit;b++){
+                if((x&(1<<b))==0)ans+=(1<<b);
+            }
+
+            cout<<ans<<endl;
+
+
+}
+int main(){
+    ios_base::sync_with_stdio(false);cin.tie(nullptr);
+   int t;cin>>t;while(t--)solve();
+return 0;
+}
