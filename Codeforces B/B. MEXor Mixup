@@ -1,0 +1,31 @@
+//Time Complexity:O(n)
+//Space Complexity:O(n)
+
+
+
+#include<bits/stdc++.h>
+using namespace std;
+typedef long long int ll;
+int preXor[300005];
+void solve(){
+          int a,b;cin>>a>>b;
+          int ans=a;
+          int checkb=preXor[a];
+          if(checkb==b){
+            cout<<ans<<'\n';
+          }
+
+          else{
+               if((checkb^a)==b)cout<<ans+2<<'\n';
+               else cout<<ans+1<<'\n';
+          }
+}
+int main(){
+    ios_base::sync_with_stdio(false);cin.tie(nullptr);
+    //here, i-1 use because xor 0 to a-1
+    for(int i=1;i<300005;i++){
+        preXor[i]=preXor[i-1]^(i-1);
+    }
+    int t;cin>>t;while(t--)solve();
+return 0;
+}
