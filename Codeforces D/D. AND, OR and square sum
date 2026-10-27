@@ -1,0 +1,44 @@
+//Using bit Independent 
+
+//Time Complexity:O(20*n)
+//Space Complexity:O(1)
+
+
+#include<bits/stdc++.h>
+using namespace std;
+typedef long long int ll;
+void solve(){
+
+}
+int main(){
+    ios_base::sync_with_stdio(false);cin.tie(nullptr);
+    ll n;cin>>n;
+    vector<ll>arr(n);
+    for(auto  &c:arr)cin>>c;
+
+    for(ll b=0;b<20;b++){
+         ll ones=0;
+        for(ll i=0;i<n;i++){
+            if((arr[i]&(1LL<<b))!=0)ones++;
+        }
+
+       //0 to ones convert 0->1
+       for(ll i=0;i<ones;i++){
+          arr[i]|=(1LL<<b);
+       }
+
+       //ones to n convert  1->0
+       for(ll i=ones;i<n;i++){
+             if((arr[i]&(1LL<<b))!=0)arr[i]&=~(1LL<<b);
+       }
+    }
+
+    ll result=0;
+    for(ll i=0;i<n;i++){
+        result+=arr[i]*arr[i];
+    }
+
+
+    cout<<result<<endl;
+return 0;
+}
