@@ -1,0 +1,36 @@
+//Time Complexity:O(2^n * n)
+//Space Complexity:O(n)
+
+
+#include<bits/stdc++.h>
+using namespace std;
+typedef long long int ll;
+void solve(){
+
+}
+int main(){
+    ios_base::sync_with_stdio(false);cin.tie(nullptr);
+    int n,w;cin>>n>>w;
+    vector<int>weight(n),value(n);
+    for(int i=0;i<n;i++){
+        int x,y;cin>>x>>y;
+        weight[i]=x;
+        value[i]=y;
+    }
+
+    ll mx=0;
+    for(int b=0;b<(1LL<<n);b++){
+        ll sum=0,wei=0;
+        for(int i=0;i<n;i++){
+              if((b&(1<<i))!=0){
+                sum+=value[i];
+                wei+=weight[i];
+              }
+        }
+        if(wei<=w)mx=max(mx,sum);
+    }
+
+    cout<<mx<<'\n';
+
+return 0;
+}
