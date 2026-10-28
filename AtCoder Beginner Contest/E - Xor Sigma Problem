@@ -1,0 +1,35 @@
+//Time complexity:O(n*28)
+//Space Complexity:O(n)
+
+
+
+#include<bits/stdc++.h>
+using namespace std;
+typedef long long int ll;
+void solve(){
+}
+int main(){
+    ios_base::sync_with_stdio(false);cin.tie(nullptr);
+     ll n;cin>>n;
+     vector<ll>pre(n+1);
+     ll total_sum=0;
+     for(int i=1;i<=n;i++){
+        ll x;cin>>x;
+        total_sum+=x;
+        pre[i]=pre[i-1]^x;
+     }
+     ll ans=0;
+     for(int b=0;b<=28;b++){
+            ll ones=0,zeros=1;
+            for(int i=1;i<=n;i++){
+                if(((pre[i]>>b)&1)==0)zeros++;
+                else ones++;
+            }
+
+           ans+=zeros*ones*(1LL<<b);
+
+     }
+     cout<<ans-total_sum<<'\n';
+
+return 0;
+}
