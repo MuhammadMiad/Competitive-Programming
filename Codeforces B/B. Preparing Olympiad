@@ -1,0 +1,36 @@
+//Time Complexity:O((1<<n)*n)
+//Space Complexity:O(n)
+
+#include<bits/stdc++.h>
+using namespace std;
+typedef long long int ll;
+void solve(){
+
+}
+int main(){
+    ios_base::sync_with_stdio(false);cin.tie(nullptr);
+   int n,l,r,x;cin>>n>>l>>r>>x;
+  vector<int>arr(n);
+  for(auto &c:arr)cin>>c;
+  int res=0;
+  for(int b=0;b<(1<<n);b++){
+        if(__builtin_popcountll(b)<2)continue;
+
+        ll sum=0;
+        int mx=0,mn=1e9;
+        for(int i=0;i<n;i++){
+             if((b&(1LL<<i))!=0){
+                sum+=arr[i];
+                mn=min(mn,arr[i]);
+                mx=max(mx,arr[i]);
+             }
+        }
+            if(sum>=l and sum<=r and  mx-mn>=x){
+                   res++;
+             }
+  }
+    cout<<res<<'\n';
+
+return 0;
+}
+
