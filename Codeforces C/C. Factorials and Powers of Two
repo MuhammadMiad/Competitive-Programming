@@ -1,0 +1,46 @@
+//Time Complexity:O(2^len*len)
+//Scpace Complexity:O(len) len=12;
+
+
+#include<bits/stdc++.h>
+using namespace std;
+typedef long long int ll;
+vector<ll>fact;
+void precompute_factorials(){
+            ll curr=6;
+            int  i=4;
+            fact.push_back(curr);
+            while(true){
+                curr*=i;
+                if(curr>1000000000000LL)break;
+
+                fact.push_back(curr);
+                i++;
+            }
+}
+
+void solve(){
+     ll n;cin>>n;
+     int len=fact.size();
+     ll k=__builtin_popcountll(n);
+     for(ll m=0;m<(1LL<<len);m++){
+        ll sum=0;
+        for(int i=0;i<len;i++){
+            if((m&(1LL<<i)))sum+=fact[i];
+        }
+
+        if(sum<=n){
+            ll num_pow=__builtin_popcountll(n-sum);
+            ll num_fact=__builtin_popcountll(m);
+            k=min(k,num_fact+num_pow);
+        }
+     }
+
+     cout<<k<<'\n';
+}
+int main(){
+    ios_base::sync_with_stdio(false);cin.tie(nullptr);
+    precompute_factorials();
+   int t;cin>>t;while(t--)solve();
+return 0;
+}
