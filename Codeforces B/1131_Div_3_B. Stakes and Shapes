@@ -1,0 +1,24 @@
+//Time Complexity:O(1)
+//Space Complexity:O(1)
+
+
+
+#include <bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+void solve(){
+  int x,y,z;
+ cin>>x>>y>> z;
+    int n=x+y+z;
+    char c;
+    if (x >= y) c ='P';
+    else if (y >= z) c ='R';
+    else c = 'S';
+    cout << string(n, c) << '\n';
+
+}
+int main() {
+    ios_base::sync_with_stdio(false); cin.tie(nullptr);
+    int  t;cin>>t;while(t--)solve();
+    return 0;
+}
