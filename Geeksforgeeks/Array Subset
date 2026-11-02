@@ -1,0 +1,29 @@
+//Time Complexity:(n)
+//Space Complexity:(n)
+
+class Solution {
+  public:
+    bool isSubset(vector<int> &a, vector<int> &b) {
+       
+       int n=a.size();
+       int m=b.size();
+       if(n<m)return false;
+       
+       unordered_map<int,int>mp;
+       for(int i=0;i<n;i++)mp[a[i]]++;
+       
+       int flag=0;
+       for(int i=0;i<b.size();i++){
+          if(!mp[b[i]]){
+              flag=1;
+              break;
+          } 
+          else mp[b[i]]--;
+       }
+       
+       if(flag)return false;
+       
+       return true;
+        
+    }
+};
