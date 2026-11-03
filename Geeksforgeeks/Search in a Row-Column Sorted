@@ -1,0 +1,25 @@
+//Time Complexity: O(n + m)
+//Auxiliary Space: O(1)
+
+
+
+class Solution {
+  public:
+    bool matSearch(vector<vector<int>> &arr, int x) {
+        
+        int n=arr.size();
+        int m=arr[0].size();
+        
+        int i=0,j=m-1;
+        while(i<n and j>=0){
+            if(arr[i][j]==x)return true;
+            else if(arr[i][j]<x)i++;
+            else j--;
+        }
+        
+        
+        
+        return false;
+        
+    }
+};
