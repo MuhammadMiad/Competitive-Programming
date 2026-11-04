@@ -1,0 +1,26 @@
+//Time Complexity: O(n^2)
+//Auxiliary Space: O(1)
+
+
+
+
+class Solution {
+  public:
+    bool findTriplet(vector<int>& arr) {
+        int n=arr.size();
+        sort(begin(arr),end(arr));
+        
+        for(int k=n-1;k>=2;k--){
+            int i=0,j=k-1;
+            while(i<j){
+                int s=arr[i]+arr[j];
+                if(s==arr[k])return true;
+                else if(s<arr[k])i++;
+                else j--;
+            }
+        }
+        
+        return false;
+        
+    }
+};
