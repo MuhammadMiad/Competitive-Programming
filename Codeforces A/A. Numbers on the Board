@@ -1,0 +1,22 @@
+//Time Complexity:O(t)
+//Space Complexity:O(1)
+
+
+#include<bits/stdc++.h>
+using namespace std;
+typedef long long int ll;
+void solve(){
+      int l,r;cin>>l>>r;
+       int p1=abs(l),p2=abs(r);
+
+      if(l==r || p1==p2)cout<<0<<'\n';
+      else if((l<0 and r<0) || (l>0 and r>0) )cout<<max(p1,p2)-min(p1,p2)<<'\n';
+      else if((l<0 and r>=0)||(l==0 and r>0))cout<<(max(p1,p2)-min(p1,p2))-1<<'\n';
+
+}
+int main(){
+    //ios_base::sync_with_stdio(false);cin.tie(nullptr);
+    int t;cin>>t;while(t--)solve();
+
+return 0;
+}
