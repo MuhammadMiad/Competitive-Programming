@@ -1,0 +1,29 @@
+//Time Complexity: O(|s|)
+//Auxiliary Space: O(1)
+
+
+class Solution {
+  public:
+    string sortString(string &s) {
+        vector<int>visit(26,0);
+        
+        int n=s.size();
+        
+        for(int i=0;i<n;i++){
+            visit[s[i]-'a']++;
+        }
+        
+        int index=0;
+        for(int i=0;i<26;i++){
+            while(visit[i]){
+              s[index++]=i+'a';
+              visit[i]--;
+            }
+            
+        }
+        
+        
+        return s;
+        
+    }
+};
