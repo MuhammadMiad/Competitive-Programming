@@ -1,0 +1,36 @@
+//Time Complexity: O((n+m) * log(n+m) )
+//Auxiliary Space: O(n + m)
+
+//Method-01
+class Solution {
+  public:
+    vector<int> mergeNsort(vector<int>& arr1, vector<int>& arr2) {
+        
+        set<int>st;
+        for(int i=0;i<arr1.size();i++)st.insert(arr1[i]);
+        for(int i=0;i<arr2.size();i++)st.insert(arr2[i]);
+        
+        vector<int>ans;
+        for(auto it:st)ans.push_back(it);
+        
+        return ans;
+        
+    }
+};
+
+
+
+//Method-02
+
+class Solution {
+  public:
+    vector<int> mergeNsort(vector<int>& arr1, vector<int>& arr2) {
+        vector<int> ans = arr1;
+        ans.insert(ans.end(), arr2.begin(), arr2.end());   // দুটো জুড়ে দিলাম
+
+        sort(ans.begin(), ans.end());                      // sort করলাম
+        ans.erase(unique(ans.begin(), ans.end()), ans.end()); // পাশাপাশি duplicate মুছলাম
+
+        return ans;
+    }
+};
