@@ -1,0 +1,35 @@
+//Time Complexity: O((n + m) log m)
+//Auxiliary Space: O(1)
+
+
+class Solution {
+  public:
+    int countPairs(vector<int>& a, vector<int>& b){
+        
+        sort(begin(b),end(b));
+        
+        int m=b.size();
+        
+        int cnt[5]={0};
+        for(auto y:b)if(y<5)cnt[y]++;
+        int ans=0;
+        for(auto x:a){
+            
+            if(x==1)continue;
+            
+            ans+=b.end()-upper_bound(begin(b),end(b),x);
+            
+            //int idx = upper_bound(b.begin(), b.end(), x) - b.begin(); 
+           // ans += b.size() - idx;
+           
+            ans+=cnt[1];                                 
+            
+            if(x==2)ans-=(cnt[3]+cnt[4]);
+            if(x==3)ans+=cnt[2];
+        
+        }
+        
+        return ans;
+        
+    }
+};
