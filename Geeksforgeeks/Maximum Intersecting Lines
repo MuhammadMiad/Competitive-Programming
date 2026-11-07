@@ -1,0 +1,29 @@
+//Time Complexity: O(n log n)
+//Auxiliary Space: O(n)
+
+
+class Solution {
+  public:
+    int maxIntersections(vector<vector<int>> &lines) {
+        sort(begin(lines),end(lines));
+        
+        priority_queue<int,vector<int>,greater<int>>pq;
+        
+        int mx=0;
+        
+        for(int i=0;i<lines.size();i++){
+            int l=lines[i][0];
+            int r=lines[i][1];
+            
+            while(!pq.empty() and pq.top()<l)pq.pop();
+            
+            pq.push(r);
+            
+            mx=max(mx,(int)pq.size());
+            
+        }
+        
+        
+        return mx;
+    }
+};
