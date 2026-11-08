@@ -1,0 +1,46 @@
+//TC:O(long(target))
+//SC:O(1)
+
+//Method-01:
+class Solution {
+public:
+    int reachNumber(int target) {
+        target=abs(target);
+        int l=1,r=100000;
+        int ans;
+        while(l<=r){
+            long long mid=l+(r-l)/2;
+
+            long long value=(mid*(mid+1))/2;
+
+            if(value>=target){
+                ans=mid;
+                r=mid-1;
+            }
+            else l=mid+1;
+        
+        }
+
+        while((ans*(ans+1)/2-target)%2)ans++;
+
+
+        return ans;
+    }
+};
+
+//TC:O(√target)
+//SC:O(1)
+
+class Solution {
+public:
+    int reachNumber(int target) {
+        target = abs(target);
+        long long k = 0, sum = 0;
+
+        while (sum < target || (sum - target) % 2 != 0) {
+            k++;
+            sum += k;
+        }
+        return k;
+    }
+};
