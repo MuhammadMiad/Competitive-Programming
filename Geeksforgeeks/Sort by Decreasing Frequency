@@ -1,0 +1,34 @@
+//Time Complexity: O(n log n)
+//Auxiliary Space: O(n)
+
+
+class Solution {
+  public:
+    vector<int> sortByFreq(vector<int>& arr) {
+        vector<pair<int,int>>v;
+        
+        map<int,int>mp;
+        for(int i=0;i<arr.size();i++){
+            mp[arr[i]]++;
+        }
+        
+        
+        for(auto it:mp){
+            v.push_back({it.second,-it.first});
+        }
+        
+        
+        sort(rbegin(v),rend(v));
+        
+        vector<int>ans;
+        for(int i=0;i<v.size();i++){
+            for(int c=0;c<v[i].first;c++){
+                ans.push_back(abs(v[i].second));
+            }
+        }
+        
+        return ans;
+        
+        
+    }
+};
