@@ -1,0 +1,24 @@
+//Time Complexity:O(nlogm)
+//Space Complexity:O(1)
+
+
+class Solution {
+public:
+    int findRadius(vector<int>& houses, vector<int>& heaters) {
+        sort(begin(heaters),end(heaters));
+
+        int mx=0;
+        for(auto h:houses){
+            auto it=lower_bound(begin(heaters),end(heaters), h);
+            
+        int mn=INT_MAX;
+            if(it!=begin(heaters))mn=min(mn,h-*prev(it));
+            if(it!=end(heaters))mn=min(mn,*it-h);
+
+            mx=max(mx,mn);
+        }
+
+
+        return mx;
+    }
+};
