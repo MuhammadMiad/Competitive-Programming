@@ -1,0 +1,42 @@
+//TC:O(logn)
+//SC:O(1)
+
+class Solution {
+public:
+    int findNthDigit(int n) {
+        
+     long long d=1,count=9,start=1;
+    
+    //Find present whice group
+     while(n>d*count){
+           n-=d*count;
+           count*=10;
+           start*=10;
+           d++;
+     }
+
+     //Find which number
+
+    long long number=start+(n-1)/d;
+
+    //Find which digit of number
+
+    int digit=(n-1)%d;
+
+    return to_string(number)[digit]-'0';
+
+    //dry run 
+    // N=200
+    // initial d=1, count=9 start=1
+    // N-=d*count  200-=1*9  =191 -> d=2 count=90   start=10 
+    // N-=d*count  181-=2*90 =11  -> d=3 count=900  start=100 
+
+    //number=start+(N-1)/d  =100+(11-1)/3 =100+ 10/3 = 103
+
+    //digit= (N-1)%d  = (11-1)%3  =1   -> 1-0d,0-1d,3-2d
+    //return 0-1d
+    
+
+
+    }
+};
