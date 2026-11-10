@@ -1,0 +1,27 @@
+//TC:O(120² + n)
+//SC: O(1)
+
+class Solution {
+public:
+    int numFriendRequests(vector<int>& ages){
+      vector<int>count(121,0);
+      for(int i=0;i<ages.size();i++)count[ages[i]]++;
+
+      int ans=0;
+      for(int ax=1;ax<=120;ax++){
+        if(!count[ax])continue;
+        for(int ay=1;ay<=ax;ay++){
+            if(!count[ay])continue;
+
+            if(ay<=0.5*ax+7)continue;
+
+            ans+=count[ax]*count[ay];
+
+            if(ax==ay)ans-=count[ax];
+        }
+      }  
+
+      return ans;
+       
+    }
+};
