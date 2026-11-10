@@ -1,0 +1,44 @@
+//Time Complexity: O(n * m * log(min(n, m)))
+//Auxiliary Space: O(min(n, m))
+
+class Solution {
+  public:
+    void diagonalSort(vector<vector<int>>& mat) {
+       
+       int n=mat.size();
+       int m=mat[0].size();
+       
+      // if(m==1 or n==1)return;
+       //Upper-right decending order sort
+       for(int i=1;i<m;i++){
+           
+           vector<int>res;
+           for(int j=i,k=0;k<n and j<m;j++,k++){
+               res.push_back(mat[k][j]);
+           }
+           
+           sort(rbegin(res),rend(res));
+           
+           for(int j=i,k=0,t=0;k<n and j<m;j++,k++,t++){
+               mat[k][j]=res[t];
+           }
+       }
+       
+       
+       ///Lower-left acending order sort
+       for(int i=1;i<n;i++){
+          
+           vector<int>res;
+           for(int j=i,k=0;k<m and j<n;j++,k++){
+               res.push_back(mat[j][k]);
+           }
+           
+           sort(begin(res),end(res));
+         
+           for(int j=i,k=0,t=0;k<m and j<n;j++,k++,t++){
+               mat[j][k]=res[t];
+           }
+       }
+        
+    }
+};
