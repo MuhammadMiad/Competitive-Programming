@@ -1,0 +1,36 @@
+//Time Complexity: O(1)
+//Auxiliary Space: O(1)
+
+
+class myStack {
+  public:
+    vector<int> st;
+    int m;
+
+    myStack(int n) {
+        m = n;
+    }
+
+    bool isEmpty() {
+        return st.empty();
+    }
+
+    bool isFull() {
+        return st.size() == m;
+    }
+
+    void push(int x) {
+        if (st.size() < m)
+            st.push_back(x);
+    }
+
+    void pop() {
+        if (!st.empty())
+            st.pop_back();
+    }
+
+    int peek() {
+        if (!st.empty()) return st.back();
+        return -1;
+    }
+};
