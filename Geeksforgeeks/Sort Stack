@@ -1,0 +1,34 @@
+//Time Complexity: O(n^2)
+//Auxiliary Space: O(n)
+
+class Solution {
+  public:
+    void sortStack(stack<int> &st) {
+        stack<int>ss;
+        
+        while(!st.empty()){
+            
+            int x=st.top();
+            st.pop();
+            
+            if(ss.empty()){
+                ss.push(x);
+            }
+            else{
+                while(!ss.empty() and ss.top()<x ){
+                       st.push(ss.top());
+                       ss.pop();
+                }
+                ss.push(x);
+                
+            }
+            
+        }
+        
+        while(!ss.empty()){
+            st.push(ss.top());
+            ss.pop();
+        }
+        
+    }
+};
