@@ -1,0 +1,37 @@
+//Time Complexity: O(1)
+//Auxiliary Space: O(1)
+
+
+class SpecialStack {
+  public:
+    stack<int> st;
+    stack<int> mn; 
+
+    SpecialStack() {}
+
+    void push(int x) {
+        st.push(x);
+        if (mn.empty()) mn.push(x);
+        else mn.push(min(mn.top(), x));
+    }
+
+    void pop() {
+        if (st.empty()) return;
+        st.pop();
+        mn.pop();
+    }
+
+    int peek() {
+        if (st.empty()) return -1;
+        return st.top();
+    }
+
+    bool isEmpty() {
+        return st.empty();
+    }
+
+    int getMin() {
+        if (mn.empty()) return -1;
+        return mn.top();
+    }
+};
