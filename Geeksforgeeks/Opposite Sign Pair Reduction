@@ -1,0 +1,41 @@
+//Time Complexity: O(n)
+//Auxiliary Space: O(n)
+
+class Solution {
+  public:
+    vector<int> reducePairs(vector<int>& arr) {
+        int n=arr.size();
+        
+        stack<int>st;
+        for(int i=0;i<n;i++){
+            int cur=arr[i];
+            bool check=true;
+            while(check and !st.empty() and ((st.top()<0)!=(cur<0))){
+                int x=st.top();
+                
+                if(abs(x)>abs(cur))check=false;
+                else if(abs(x)<abs(cur)){
+                    st.pop();
+                }
+                else{
+                    st.pop();
+                    check=false;
+                }
+                
+            }
+            
+            if(check)st.push(cur);
+            
+        }
+        
+        vector<int>ans(st.size());
+        while(!st.empty()){
+            ans[st.size()-1]=st.top();
+            st.pop();
+        }
+        
+        
+        return ans;
+        
+    }
+};
