@@ -1,0 +1,28 @@
+//Time Complexity: O(n)
+//Auxiliary Space: O(n)
+
+
+class Solution {
+  public:
+    bool checkRedundancy(string &A) {
+        stack<char>st;
+           for(int i=0;i<A.size();i++){
+               if(A[i]=='(' || A[i]=='+' || A[i]=='-' || A[i]=='*' || A[i]=='/'){
+                   st.push(A[i]);
+               }
+               else if(A[i]==')'){
+                   bool check=false;
+                   while(!st.empty() and st.top()!='('){
+                       check=true;
+                       st.pop();
+                   }
+
+                   if(check)st.pop();
+                   else return true;
+               }
+           }
+
+           return false;
+        
+    }
+};
